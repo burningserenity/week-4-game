@@ -8,40 +8,55 @@ var darth_traya =
   }),
 
       name: "Darth Traya",
-      hp: 180,
-      atk: 7,
-      initAtk: 7,
-      ctr: 25,
+      hp: 2000,
+      atk: 50,
+      initAtk: 50,
+      ctr: 100,
       hpDisplay: ""
 }
 
 var jolee_bindo =
 {
+  graphic: $("<div>").attr(
+  {
+    class: "charbox",
+    id: "jolee",
+  }),
   name: "Jolee Bindo",
-  hp: 150,
-  atk: 8,
-  initAtk: 8,
-  ctr: 20,
+  hp: 1500,
+  atk: 70,
+  initAtk: 70,
+  ctr: 1500,
   hpDisplay: ""
 }
 
 var visas_marr =
 {
+  graphic: $("<div>").attr(
+  {
+    class: "charbox",
+    id: "visas",
+  }),
   name: "Visas Marr",
-  hp: 120,
-  atk: 8,
-  initAtk: 8,
-  ctr: 15,
+  hp: 1200,
+  atk: 80,
+  initAtk: 80,
+  ctr: 200,
   hpDisplay: ""
 }
 
 var bastila_shan =
 {
+  graphic: $("<div>").attr(
+  {
+    class: "charbox",
+    id: "bastila",
+  }),
   name: "Bastila Shan",
-  hp: 100,
-  atk: 14,
-  initAtk: 14,
-  ctr: 5,
+  hp: 1800,
+  atk: 40,
+  initAtk: 40,
+  ctr: 250,
   hpDisplay: ""
 }
 
@@ -60,13 +75,6 @@ $(function()
         class: "col-md-3",
         id: "traya-col"
       }).appendTo("#charwrapper");
-        /*
-$("<div>").attr(
-        {
-          class: "charbox",
-          id: "traya"
-        }).appendTo("#traya-col");*/
-
           darth_traya.graphic.appendTo("#traya-col");
           $("<p>Darth Traya</p>").prependTo("#traya");
           $("<img>").attr(
@@ -87,11 +95,7 @@ $("<div>").attr(
           class: "col-md-3",
           id: "jolee-col"
         }).appendTo("#charwrapper");
-        $("<div>").attr(
-          {
-            class: "charbox",
-            id: "jolee"
-          }).appendTo("#jolee-col");
+        jolee_bindo.graphic.appendTo("#jolee-col");
           $("<p>Jolee Bindo</p>").prependTo("#jolee");
           $("<img>").attr(
             {
@@ -111,11 +115,7 @@ $("<div>").attr(
           class: "col-md-3",
           id: "visas-col"
         }).appendTo("#charwrapper");
-        $("<div>").attr(
-          {
-            class: "charbox",
-            id: "visas"
-          }).appendTo("#visas-col");
+        visas_marr.graphic.appendTo("#visas-col");
           $("<p>Visas Marr</p>").prependTo("#visas");
           $("<img>").attr(
             {
@@ -135,11 +135,7 @@ $("<div>").attr(
           class: "col-md-3",
           id: "bastila-col"
         }).appendTo("#charwrapper");
-        $("<div>").attr(
-          {
-            class: "charbox",
-            id: "bastila"
-          }).appendTo("#bastila-col");
+        bastila_shan.graphic.appendTo("#bastila-col");
           $("<p>Bastila Shan</p>").prependTo("#bastila");
           $("<img>").attr(
             {
@@ -155,91 +151,39 @@ $("<div>").attr(
               id: "bastila_hp",
             }).appendTo("#bastila");
 
-  /*
+          player = darth_traya;
+
 $(".charbox").click(function()
   {
-    if ($("#char-col").find(".col-md-3").length == 0)
+    if ($("#char-col").find(".charbox").length == 0)
     {
+      $(this).detach();
       $(this).appendTo("#char-col");
-      if (this == traya.charbox)
-        player = darth_traya;
-    }
-  })
-  */
-
-
-  $("#traya-col").click(function()
-  {
-    if ($("#char-col").find(".col-md-3").length == 0)
-    {
-      player = Object.assign({}, darth_traya);
-      $("#traya-col").appendTo("#char-col");
-    }
-    else if (($("#char-col").find(".col-md-3").length == 1) && ($("#defender").find(".col-md-3").length == 0))
-      {
-        enemy = Object.assign({},darth_traya);
-        $("#traya-col").appendTo("#defender");
-        $("#charwrapper").appendTo("#remainingVictims");
-        $("#benchheader").appendTo("#bench");
-        $('#remainingVictims').appendTo("#benchheader");
-        play(player, enemy);
-      }
-  });
-
-
-
-  $("#jolee-col").click(function()
-  {
-    if ($("#char-col").find(".col-md-3").length == 0)
-    {
-      player = Object.assign({}, jolee_bindo);
-      $("#jolee-col").appendTo("#char-col");
-    }
-    else if (($("#char-col").find(".col-md-3").length == 1) && ($("#defender").find(".col-md-3").length == 0))
-      {
-        enemy = Object.assign({}, jolee_bindo);
-        $("#jolee-col").appendTo("#defender");
-        $("#charwrapper").appendTo("#remainingVictims");
-        $("#benchheader").appendTo("#bench");
-        $('#remainingVictims').appendTo("#benchheader");
-        play(player, enemy);
-      }
-  });
-
-  $("#visas-col").click(function()
-  {
-    if ($("#char-col").find(".col-md-3").length == 0)
-    {
-      player = Object.assign({}, visas_marr);
-      $("#visas-col").appendTo("#char-col");
-    }
-    else if (($("#char-col").find(".col-md-3").length == 1) && ($("#defender").find(".col-md-3").length == 0))
-      {
-        enemy = Object.assign({}, visas_marr);
-        $("#visas-col").appendTo("#defender");
-        $("#charwrapper").appendTo("#remainingVictims");
-        $("#benchheader").appendTo("#bench");
-        $('#remainingVictims').appendTo("#benchheader");
-        play(player, enemy);
-      }
-  });
-
-  $("#bastila-col").click(function()
-  {
-    if ($("#char-col").find(".col-md-3").length == 0)
-    {
-      player = Object.assign({}, bastila_shan);
-      $("#bastila-col").appendTo("#char-col");
-    }
-    else if (($("#char-col").find(".col-md-3").length == 1) && ($("#defender").find(".col-md-3").length == 0))
-    {
-      enemy = Object.assign({}, bastila_shan);
-      $("#bastila-col").appendTo("#defender");
       $("#charwrapper").appendTo("#remainingVictims");
-      $("#benchheader").appendTo("#bench");
-      $('#remainingVictims').appendTo("#benchheader");
+      if ($("char-col").find("#traya").length == 1)
+        player = darth_traya;
+      if ($("char-col").find("#jolee").length == 1)
+        player = jolee_bindo;
+      if ($("char-col").find("#visas").length == 1)
+        player = visas_marr;
+      if ($("char-col").find("#bastila").length == 1)
+        player = bastila_shan;
+    }
+    else if ($("#char-col").find(".charbox").length == 1 && $("#defender").find(".charbox").length == 0)
+    {
+      $(this).detach();
+      $(this).appendTo("#defender");
+      if ($("#defender").find("#traya").length == 1)
+        enemy = darth_traya;
+      if ($("#defender").find("#jolee").length == 1)
+        enemy = jolee_bindo;
+      if ($("#defender").find("#visas").length == 1)
+        enemy = visas_marr;
+      if ($("#defender").find("#bastila").length == 1)
+        enemy = bastila_shan;
       play(player, enemy);
     }
+
   });
 });
 
