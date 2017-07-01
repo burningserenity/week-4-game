@@ -26,7 +26,7 @@ var jolee_bindo =
   hp: 1500,
   atk: 70,
   initAtk: 70,
-  ctr: 1500,
+  ctr: 150,
   hpDisplay: ""
 }
 
@@ -157,22 +157,22 @@ $(".charbox").click(function()
   {
     if ($("#char-col").find(".charbox").length == 0)
     {
-      $(this).detach();
-      $(this).appendTo("#char-col");
+      $(this).parent().detach();
+      $(this).parent().appendTo("#char-col");
       $("#charwrapper").appendTo("#remainingVictims");
-      if ($("char-col").find("#traya").length == 1)
+      if ($("#char-col").find("#traya").length == 1)
         player = darth_traya;
-      if ($("char-col").find("#jolee").length == 1)
+      if ($("#char-col").find("#jolee").length == 1)
         player = jolee_bindo;
-      if ($("char-col").find("#visas").length == 1)
+      if ($("#char-col").find("#visas").length == 1)
         player = visas_marr;
-      if ($("char-col").find("#bastila").length == 1)
+      if ($("#char-col").find("#bastila").length == 1)
         player = bastila_shan;
     }
     else if ($("#char-col").find(".charbox").length == 1 && $("#defender").find(".charbox").length == 0)
     {
-      $(this).detach();
-      $(this).appendTo("#defender");
+      $(this).parent().detach();
+      $(this).parent().appendTo("#defender");
       if ($("#defender").find("#traya").length == 1)
         enemy = darth_traya;
       if ($("#defender").find("#jolee").length == 1)
